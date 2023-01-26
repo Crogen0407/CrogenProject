@@ -6,8 +6,4 @@ ds
 aasddasd
 asdadasd
 # asdasd
-1. git asdadd 하고 작업한 파일을 추가해줘야 한다.
-git add 파일명
-2. sd commit -m "메세지"
-asdasdasd
-3. 커밋이 끝난 거는 remote에 올리는 작업을 해야 한다.
+1. git asdadd 하고 작업한 파일을 추가해줘야 한다.dsdf
