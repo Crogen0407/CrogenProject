@@ -1,27 +1,13 @@
 print("Hello GitHub");
-GitHub 
+da 
 GitHub
-kjhsdfkds
+asdasdakjhsdfkds
 ds
-adasd
-
-# git은 뭔가 파일을 만들고 저장했다면 
-
-1. git add 하고 작업한 파일을 추가해줘야 한다.
+aasddasd
+asdadasd
+# asdasd
+1. git asdadd 하고 작업한 파일을 추가해줘야 한다.
 git add 파일명
-2. 모든 추가가 완료되었다면 그 상태를 commit 해줘야 한다.
-git commit -m "메세지"
-
+2. sd commit -m "메세지"
+asdasdasd
 3. 커밋이 끝난 거는 remote에 올리는 작업을 해야 한다.
-
-git sdfsdfs
-git push origin master
-
-니 이빨에 고추가루 꼈엉ㅋㅋ
-asdfsadf
-
-
-동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리 나라 만세 무궁화 삼천리 화려강산
-asdasdasasdasdasd
-adasdasdas
-sdfsdfsdf
