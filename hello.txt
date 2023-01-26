@@ -5,7 +5,8 @@ kjhsdfkds
 ds
 adasd
 
-git은 뭔가 파일을 만들고 저장했다면 
+# git은 뭔가 파일을 만들고 저장했다면 
+
 1. git add 하고 작업한 파일을 추가해줘야 한다.
 git add 파일명
 2. 모든 추가가 완료되었다면 그 상태를 commit 해줘야 한다.
