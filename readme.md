@@ -41,7 +41,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public bool[] isEntrance;
+    public int entrance;
 
     // 죽었을 때 리스폰
     public bool isDie;
@@ -64,11 +64,18 @@ public class GameManager : MonoBehaviour
     public GameObject[] Objects;
 
     // ObjectPool
-    public GameObject[] rooms;
-    public GameObject[] roomPool_0;
-    public GameObject[] roomPool_1;
-    public GameObject[] roomPool_2;
-    public GameObject[] roomPool_3;
+    public GameObject roomPrefabs0;
+    public GameObject roomPrefabs1;
+    public GameObject roomPrefabs2;
+    public GameObject roomPrefabs3;
+
+    GameObject[] roomPool_0;
+    GameObject[] roomPool_1;
+    GameObject[] roomPool_2;
+    GameObject[] roomPool_3;
+
+    [SerializeField]
+    private GameObject[] targetPool = new GameObject[10];
 
     public int RoomCount
     {
@@ -99,60 +106,38 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        for (int j = 0; j < roomPool_0.Length; j++)
+        roomPool_0 = new GameObject[10];
+        roomPool_1 = new GameObject[10];
+        roomPool_2 = new GameObject[10];
+        roomPool_3 = new GameObject[10];
+
+        for (int i = 0; i < roomPool_0.Length; i++)
         {
-            GameObject obj = Instantiate(rooms[0], Vector3.zero, Quaternion.identity);
-            obj.SetActive(false);
-            roomPool_0[j] = obj;
+            roomPool_0[i] = Instantiate(roomPrefabs0, Vector3.zero, Quaternion.identity);
+            roomPool_0[i].SetActive(false);
         }
-        for (int j = 0; j < roomPool_1.Length; j++)
+        for (int i = 0; i < roomPool_1.Length; i++)
         {
-            GameObject obj = Instantiate(rooms[1], Vector3.zero, Quaternion.identity);
-            obj.SetActive(false);
-            roomPool_1[j] = obj;
+            roomPool_1[i] = Instantiate(roomPrefabs1, Vector3.zero, Quaternion.identity);
+            roomPool_1[i].SetActive(false);
         }
-        for (int j = 0; j < roomPool_2.Length; j++)
+        for (int i = 0; i < roomPool_2.Length; i++)
         {
-            GameObject obj = Instantiate(rooms[2], Vector3.zero, Quaternion.identity);
-            obj.SetActive(false);
-            roomPool_2[j] = obj;
+            roomPool_2[i] = Instantiate(roomPrefabs2, Vector3.zero, Quaternion.identity);
+            roomPool_2[i].SetActive(false);
         }
-        for (int j = 0; j < roomPool_3.Length; j++)
+        for (int i = 0; i < roomPool_3.Length; i++)
         {
-            GameObject obj = Instantiate(rooms[3], Vector3.zero, Quaternion.identity);
-            obj.SetActive(false);
-            roomPool_3[j] = obj;
+            roomPool_3[i] = Instantiate(roomPrefabs3, Vector3.zero, Quaternion.identity);
+            roomPool_3[i].SetActive(false);
         }
     }
 
     public void Entrance()
     {
-        if (!isEntrance[0] && !isEntrance[1] && !isEntrance[2] && !isEntrance[3] && !isEntrance[4] && !isEntrance[5])
-        {
-            isEntrance[0] = true;
-        }
-        else if (!isEntrance[1] && !isEntrance[2] && !isEntrance[3] && !isEntrance[4] && !isEntrance[5])
-        {
-            isEntrance[1] = true;
-        }
-        else if (!isEntrance[2] && !isEntrance[3] && !isEntrance[4] && !isEntrance[5])
-        {
-            isEntrance[2] = true;
-        }
-        else if (!isEntrance[3] && !isEntrance[4] && !isEntrance[5])
-        {
-            isEntrance[3] = true;
-        }
-        else if (!isEntrance[4] && !isEntrance[5])
-        {
-            isEntrance[4] = true;
-        }
-        else if (!isEntrance[5])
-        {
-            isEntrance[5] = true;
-        }
+        entrance++;
 
-        if (isEntrance[0] && isEntrance[1] && isEntrance[2] && isEntrance[3] && isEntrance[4] && isEntrance[5])
+        if (entrance <= 5)
         {
             isEnd = UnityEngine.Random.Range(0f, 100f) > endingPoint;
             if (isEnd)
@@ -171,60 +156,35 @@ public class GameManager : MonoBehaviour
         if (!roomPoint.Contains(vec))
         {
             int ran = UnityEngine.Random.Range(0, 4);
-
             switch (ran)
             {
-
                 case 0:
-                    for (int i = 0; i < roomPool_0.Length; i++)
-                    {
-                        if (roomPool_0[i].activeSelf == false)
-                        {
-                            roomPool_0[i].transform.position = vec;
-                            roomPool_0[i].SetActive(true);
-                            break;
-                        }
-                    }
+                    targetPool = roomPool_0;
                     break;
                 case 1:
-                    for (int i = 0; i < roomPool_1.Length; i++)
-                    {
-                        if (roomPool_1[i].activeSelf == false)
-                        {
-                            roomPool_1[i].transform.position = vec;
-                            roomPool_1[i].SetActive(true);
-                            break;
-                        }
-                    }
+                    targetPool = roomPool_1;
                     break;
                 case 2:
-                    for (int i = 0; i < roomPool_2.Length; i++)
-                    {
-                        if (roomPool_2[i].activeSelf == false)
-                        {
-                            roomPool_2[i].transform.position = vec;
-                            roomPool_2[i].SetActive(true);
-                            break;
-                        }
-                    }
+                    targetPool = roomPool_2;
                     break;
                 case 3:
-                    for (int i = 0; i < roomPool_3.Length; i++)
-                    {
-                        if (roomPool_3[i].activeSelf == false)
-                        {
-                            roomPool_3[i].transform.position = vec;
-                            roomPool_3[i].SetActive(true);
-                            break;
-                        }
-                    }
+                    targetPool = roomPool_3;
                     break;
             }
 
+            for (int i = 0; i < targetPool.Length; i++)
+            {
+                if (targetPool[i].activeSelf == false)
+                {
+                    targetPool[i].transform.position = vec;
+                    targetPool[i].SetActive(true);
+                    break;
+                }
+            }
             roomPoint.Add(vec);
         }
-        
     }
 }
+
 ```
 --------------------------------------
