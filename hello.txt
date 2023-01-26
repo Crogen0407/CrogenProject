@@ -14,5 +14,5 @@ git commit -m "메세지"
 
 3. 커밋이 끝난 거는 remote에 올리는 작업을 해야 한다.
 
-git 
+git sdfsdfs
 git push origin master
